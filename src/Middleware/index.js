@@ -28,8 +28,23 @@ function checkProjectsMiddleware(req, resp, next) {
 
 }
 
+function checkIfExistsMiddleware(req, resp, next) {
+    const {id} = req.body;
+
+    const proj = arrProjects.findIndex(project => project.id == id);
+
+    if(proj > 0){
+        return resp.status(400)
+            .send({error: `This ID ${id} already exists`});
+    }
+
+    return next();
+
+}
+
 
 module.exports = {
     MiddlewareGeneral,
-    checkProjectsMiddleware
+    checkProjectsMiddleware,
+    checkIfExistsMiddleware
 };

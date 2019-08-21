@@ -29,6 +29,14 @@ function store(request, response) {
         tasks: []
     }
 
+    //Buscar um projeto com este id
+    const project = arrProjects.find(p => p.id == newArray.id); 
+
+    console.log(project);
+
+    if(project > -1){
+        newArray.id = newArray.id + (project + 1)
+    }
     arrProjects.push(newArray);
 
     return response.status(201)

@@ -10,4 +10,5 @@ router.get('/', (request, response) => {
 
 router.get('/projects', ProjectsController.index);
 router.post('/projects', ProjectsController.store);
+router.put('/projects/:id', ProjectsController.edit);
 module.exports = router;

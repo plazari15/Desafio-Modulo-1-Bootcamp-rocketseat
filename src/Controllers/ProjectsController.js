@@ -26,7 +26,21 @@ function store(request, response) {
     .json(arrProjects);
 }
 
+function edit(request, response){
+    const { id } = request.params;
+
+    const {title } = request.body;
+
+    const projectToUpdate = arrProjects.find(project => project.id == id);
+
+    projectToUpdate.title = title;
+
+    return response.status(200)
+        .json(projectToUpdate);
+}
+
 module.exports = {
     index,
-    store
+    store,
+    edit
 };

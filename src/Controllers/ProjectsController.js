@@ -11,6 +11,15 @@ function index(request, response) {
         .send(arrProjects);    
 }
 
+function show(request, response) {
+    const {id} = request.params;
+
+    const project = arrProjects.find(p => p.id == id);
+
+    return response.status(200)
+    .send(project);
+}
+
 function store(request, response) {
     const {id, title } = request.body;
     
@@ -54,7 +63,7 @@ function destroy(request, response) {
 
 function postTask(request, response) {
     const {id } = request.params;
-    
+
     const { title } = request.body;
 
     const arrProject = arrProjects.find(project => project.id == id);
@@ -67,8 +76,10 @@ function postTask(request, response) {
 
 module.exports = {
     index,
+    show,
     store,
     edit,
     destroy,
-    postTask
+    postTask,
+    arrProjects
 };

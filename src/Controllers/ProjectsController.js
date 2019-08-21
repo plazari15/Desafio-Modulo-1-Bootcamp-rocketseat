@@ -1,4 +1,4 @@
-const arrProject = [
+const arrProjects = [
     {
         id : 1,
         title: "Novo Projeto",
@@ -8,9 +8,25 @@ const arrProject = [
 
 function index(request, response) {
     return response.status(200)
-        .send(arrProject);    
+        .send(arrProjects);    
+}
+
+function store(request, response) {
+    const {id, title } = request.body;
+    
+    const newArray = {
+        id,
+        title, 
+        tasks: []
+    }
+
+    arrProjects.push(newArray);
+
+    return response.status(201)
+    .json(arrProjects);
 }
 
 module.exports = {
-    index
+    index,
+    store
 };

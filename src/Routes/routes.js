@@ -8,6 +8,6 @@ router.get('/', (request, response) => {
     return response.status(200).send({message : "Seja bem vindo"})
 });
 
-router.get('/projects', ProjectsController.index)
-
+router.get('/projects', ProjectsController.index);
+router.post('/projects', ProjectsController.store);
 module.exports = router;

@@ -26,7 +26,7 @@ function store(request, response) {
     .json(arrProjects);
 }
 
-function edit(request, response){
+function edit(request, response) {
     const { id } = request.params;
 
     const {title } = request.body;
@@ -39,8 +39,22 @@ function edit(request, response){
         .json(projectToUpdate);
 }
 
+function destroy(request, response) {
+
+    const {id} = request.params;
+
+    const projectToDelete = arrProjects.findIndex(project => project.id == id);
+
+    arrProjects.splice(projectToDelete);
+    
+    return response.status(200)
+        .json(arrProjects);
+
+}
+
 module.exports = {
     index,
     store,
-    edit
+    edit,
+    destroy
 };

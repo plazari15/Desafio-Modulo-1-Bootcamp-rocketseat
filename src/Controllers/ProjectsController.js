@@ -52,9 +52,23 @@ function destroy(request, response) {
 
 }
 
+function postTask(request, response) {
+    const {id } = request.params;
+    
+    const { title } = request.body;
+
+    const arrProject = arrProjects.find(project => project.id == id);
+
+    arrProject.tasks.push(title);
+
+    return response.status(200)
+        .json(arrProjects);
+}
+
 module.exports = {
     index,
     store,
     edit,
-    destroy
+    destroy,
+    postTask
 };
